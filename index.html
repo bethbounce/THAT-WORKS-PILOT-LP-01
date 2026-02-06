@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>That Works | Never Miss Another Emergency Call</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+        
+        .cta-button {
+            background: #f97316;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+        }
+        
+        .cta-button-secondary {
+            background: #10b981;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+        
+        .cta-button-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero .cta-button {
+            font-size: 18px;
+            padding: 16px 32px;
+            margin-top: 10px;
+        }
+        
+        .mockup {
+            margin-top: 50px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            color: #1e293b;
+            text-align: left;
+        }
+        
+        .mockup-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        
+        .mockup-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .mockup-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        
+        .mockup-text {
+            font-size: 14px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-alt {
+            background: #f8fafc;
+        }
+        
+        .section-pilot {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .section-pilot h2 {
+            color: white;
+        }
+        
+        .section-pilot .section-intro {
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .pilot-badge {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e293b;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .pilot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pilot-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: #1e293b;
+        }
+        
+        .pilot-card h3 {
+            color: #10b981;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .pilot-card ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .pilot-card li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .pilot-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .pilot-cta-wrapper {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .pilot-note {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #1e3a8a;
+            text-align: center;
+            line-height: 1.3;
+        }
+        
+        .section-intro {
+            font-size: 18px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #475569;
+        }
+        
+        .problem-list {
+            list-style: none;
+            max-width: 700px;
+            margin: 30px auto;
+        }
+        
+        .problem-list li {
+            padding: 15px 0 15px 30px;
+            position: relative;
+            font-size: 18px;
+        }
+        
+        .problem-list li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .step {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #1e3a8a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .step h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .step p {
+            color: #475569;
+        }
+        
+        .trade-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .trade-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .trade-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .trade-card > p {
+            margin-bottom: 15px;
+            color: #475569;
+        }
+        
+        .stat {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f97316;
+            margin: 20px 0;
+        }
+        
+        .testimonial {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-style: italic;
+            color: #1e293b;
+        }
+        
+        .testimonial-author {
+            margin-top: 10px;
+            font-weight: 600;
+            font-style: normal;
+            color: #1e3a8a;
+            font-size: 14px;
+        }
+        
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .diff-item {
+            display: flex;
+            align-items: start;
+        }
+        
+        .diff-item::before {
+            content: "✓";
+            color: #10b981;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .diff-content h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .diff-content p {
+            color: #475569;
+        }
+        
+        .pricing-card {
+            background: white;
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .pricing-card h3 {
+            color: #1e3a8a;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 24px;
+            color: #64748b;
+        }
+        
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .features-list li {
+            padding: 10px 0;
+            font-size: 16px;
+            color: #1e293b;
+        }
+        
+        .guarantee {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+        }
+        
+        .faq-item h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .faq-item p {
+            color: #475569;
+            line-height: 1.6;
+        }
+        
+        .final-cta {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .final-cta h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .trade-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .diff-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pilot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">That Works</div>
+                <a href="https://calendly.com/your-booking-link" class="cta-button">Book Free Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Never Miss Another Emergency Call.</h1>
+            <p class="hero-subtitle">Complete lead capture system for Ventura County roofers, plumbers, and electricians. We handle the calls you miss. You book the jobs.</p>
+            <a href="https://calendly.com/your-booking-link" class="cta-button">Book My Free Demo</a>
+            
+            <div class="mockup">
+                <div class="mockup-item">
+                    <div class="mockup-label">Missed Call • 2:47 PM</div>
+                    <div class="mockup-text">Call from (805) 555-0123</div>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-label">Auto-Reply • 2:47 PM</div>
+                    <div class="mockup-text">"We saw your call. Our team handles emergencies 24/7. We can be there today. What's your address?"</div>
+                </div>
+                <div class="mockup-item">
+                    <div class="mockup-label">Homeowner • 2:48 PM</div>
+                    <div class="mockup-text">"Life saver! 123 Main St, Camarillo. See you then!"</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-pilot">
+        <div class="container">
+            <div class="pilot-badge">Limited Availability</div>
+            <h2>Ventura County Pilot Program: 10 Spots Available</h2>
+            <p class="section-intro">We're looking for 10 HVAC, plumbing, and electrical contractors to pilot our lead capture system at no cost for 90 days. In exchange, we'll use your feedback to build the best possible product for Ventura County trades.</p>
+            
+            <div class="pilot-grid">
+                <div class="pilot-card">
+                    <h3>What You Get</h3>
+                    <ul>
+                        <li>Full system access ($297/mo value) — completely free for 90 days</li>
+                        <li>White-glove setup and support</li>
+                        <li>Priority feature requests</li>
+                        <li>First access to new tools as we build them</li>
+                    </ul>
+                </div>
+                
+                <div class="pilot-card">
+                    <h3>What We Need From You</h3>
+                    <ul>
+                        <li>Weekly 15-minute check-ins to share what's working (and what's not)</li>
+                        <li>Permission to use your results as a case study (anonymously if preferred)</li>
+                        <li>Honest feedback on features, pain points, and what you'd pay for</li>
+                    </ul>
+                </div>
+                
+                <div class="pilot-card">
+                    <h3>Who Qualifies</h3>
+                    <ul>
+                        <li>Established Ventura County contractor (HVAC, plumbing, or electrical)</li>
+                        <li>Currently losing leads to missed calls or slow response times</li>
+                        <li>Willing to commit to using the system actively for 90 days</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pilot-cta-wrapper">
+                <a href="https://calendly.com/your-pilot-link" class="cta-button-secondary">Apply for Pilot Program</a>
+                <p class="pilot-note">Limited to 10 businesses. Applications close when spots fill.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Ventura County's Extreme Weather Conditions Create Emergency Call Surges. And Customers Won't Wait.</h2>
+            <p class="section-intro">You're up on a roof, inside a crawlspace, or finishing a panel upgrade. Your phone is blowing up with emergency calls — heat waves, Santa Ana winds, burst pipes, electrical failures. One crisis event and suddenly everyone in the county needs help at the same time. By the time you're done and call people back, they've already booked your competitor.</p>
+            
+            <p class="section-intro" style="font-weight: 600; font-size: 20px; margin-top: 30px;">Here's what's costing you $50k–$70k a year:</p>
+            
+            <ul class="problem-list">
+                <li>60% of customers hang up if you don't answer and call the next contractor</li>
+                <li>Emergency surges = call volumes you can't physically answer while working</li>
+                <li>Your website is a digital brochure, not a lead-catcher</li>
+                <li>Happy customers forget to leave reviews, killing your Google ranking</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section-alt">
+        <div class="container">
+            <h2>The 4-Step System That Captures Every Lead</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3>Your New Chatbot</h3>
+                    <p>We build a chatbot that texts you immediately when a lead comes in. Speed to new lead = money.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3>Missed Call Text-Back</h3>
+                    <p>If you miss a call, our system instantly texts them: "Sorry I missed you, how can I help?"</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3>5-Star Reputation</h3>
+                    <p>Automatically requests reviews after every job. 4- and 5-star reviews go to Google; lower ratings go privately to you.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <h3>Local SEO Focus</h3>
+                    <p>We ensure your business is actually found on Google when emergencies hit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Built for Ventura County Trade Contractors</h2>
+            
+            <div class="trade-cards">
+                <div class="trade-card">
+                    <h3>Roofing</h3>
+                    <p>Storm damage and leak calls can't wait. We make sure emergency leads never go cold.</p>
+                    <div class="stat">Average emergency roof repair: $2,500</div>
+                    <div class="testimonial">
+                        "During the October windstorm, That Works texted back every single caller while I was up on roofs all day. Booked 12 emergency jobs that week that would have gone elsewhere."
+                        <div class="testimonial-author">— Sarah M., Roofing Solutions, Thousand Oaks</div>
+                    </div>
+                </div>
+                
+                <div class="trade-card">
+                    <h3>Plumbing</h3>
+                    <p>Burst pipes and water heater failures are high-value emergencies you can't afford to miss.</p>
+                    <div class="stat">Average emergency plumbing job: $1,200</div>
+                    <div class="testimonial">
+                        "I used to lose every single after-hours call. Now the system texts them back before I even know my phone rang. Picked up 8 emergency jobs last month alone."
+                        <div class="testimonial-author">— Tom R., Plumbing & Waterworks, Oxnard</div>
+                    </div>
+                </div>
+                
+                <div class="trade-card">
+                    <h3>Electrical</h3>
+                    <p>Panel upgrades and emergency repairs are premium work. We capture every lead.</p>
+                    <div class="stat">Average panel upgrade: $3,000</div>
+                    <div class="testimonial">
+                        "The system caught 3 panel upgrade leads this week while I was finishing another job. That's $9,000 I would have completely missed without it."
+                        <div class="testimonial-author">— Mike C., Electrical Services, Camarillo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt">
+        <div class="container">
+            <h2>What Makes Us Different?</h2>
+            
+            <div class="diff-grid">
+                <div class="diff-item">
+                    <div class="diff-content">
+                        <h3>Built for Ventura County's Extreme Conditions</h3>
+                        <p>We understand your market. 90°F+ days are increasing, Santa Ana winds hit 60+ MPH, and emergencies don't wait for business hours.</p>
+                    </div>
+                </div>
+                
+                <div class="diff-item">
+                    <div class="diff-content">
+                        <h3>No Long-Term Contracts</h3>
+                        <p>Month-to-month. Cancel anytime. We earn your business every month.</p>
+                    </div>
+                </div>
+                
+                <div class="diff-item">
+                    <div class="diff-content">
+                        <h3>Set Up in 48 Hours</h3>
+                        <p>Fast deployment. You'll start capturing missed calls this week, not next quarter.</p>
+                    </div>
+                </div>
+                
+                <div class="diff-item">
+                    <div class="diff-content">
+                        <h3>We Handle Everything</h3>
+                        <p>No software to master. We set it up, you just book more jobs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>One Simple Price. Everything Included.</h2>
+            
+            <div class="pricing-card">
+                <h3>That Works - Complete System</h3>
+                <div class="price">$297<span class="price-period">/mo</span></div>
+                
+                <ul class="features-list">
+                    <li>✅ Missed Call Text-Back (unlimited)</li>
+                    <li>✅ Text-Enabled Website Chat Widget</li>
+                    <li>✅ 5-Star Google Review Automation</li>
+                    <li>✅ Real-Time Lead Dashboard</li>
+                    <li>✅ 48-Hour Setup</li>
+                    <li>✅ Cancel Anytime</li>
+                </ul>
+                
+                <a href="https://calendly.com/your-booking-link" class="cta-button">Book My Free Demo</a>
+                
+                <p class="guarantee">Not seeing results in 30 days? Get a full refund.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt">
+        <div class="container">
+            <h2>Questions Ventura County Contractors Actually Ask</h2>
+            
+            <div class="faq-item">
+                <h3>Q: How fast will I see results?</h3>
+                <p>Most contractors capture their first missed call within 24-48 hours of setup. During heat waves, storms, or emergency surges, you'll see the impact immediately.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: Does this replace my receptionist?</h3>
+                <p>No. It works alongside your team. It catches calls when you're busy, after hours, or during call volume spikes.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: What if customers don't like automated texts?</h3>
+                <p>They LOVE it. When their AC is broken in 95-degree heat, their pipe just burst, or their panel is sparking, they want immediate acknowledgment that help is coming. That's exactly what this provides.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: Do I need to change my phone number?</h3>
+                <p>Nope. We work with your existing phone system. Zero disruption to your business.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: What happens to my data if I cancel?</h3>
+                <p>You own everything: all customer data, review history, and message logs. We'll hand it all over, no strings attached.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Q: Can I try it first?</h3>
+                <p>Absolutely. Book a free demo call and we'll show you exactly how it works with a live walkthrough.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Stop Losing $60,000/Year to Missed Calls</h2>
+            <p>Book a 15-minute demo. See how Ventura County roofers, plumbers, and electricians are capturing leads 24/7.</p>
+            <a href="https://calendly.com/your-booking-link" class="cta-button">Book My Free Demo Now</a>
+            <p class="disclaimer">No pressure. No commitment. Just a clear explanation.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© ThatWorks 2026</p>
+        </div>
+    </footer>
+</body>
+</html>
